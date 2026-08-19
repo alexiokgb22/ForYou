@@ -9,7 +9,18 @@
 * 🟢 You can import this file directly.
 */
 
+export const ReadingMode = {
+  UNDECIDED: 'UNDECIDED',
+  IMMEDIATE: 'IMMEDIATE',
+  SCHEDULED: 'SCHEDULED'
+} as const
+
+export type ReadingMode = (typeof ReadingMode)[keyof typeof ReadingMode]
 
 
-// This file is empty because there are no enums in the schema.
-export {}
+export const LetterStatus = {
+  SENT: 'SENT',
+  OPENED: 'OPENED'
+} as const
+
+export type LetterStatus = (typeof LetterStatus)[keyof typeof LetterStatus]

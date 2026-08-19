@@ -51,7 +51,9 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-
+  User: 'User',
+  Collection: 'Collection',
+  Letter: 'Letter'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -68,4 +70,117 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 } as const)
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+export const UserScalarFieldEnum = {
+  id: 'id',
+  googleId: 'googleId',
+  email: 'email',
+  name: 'name',
+  avatarUrl: 'avatarUrl',
+  passwordHash: 'passwordHash',
+  createdAt: 'createdAt'
+} as const
+
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const CollectionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  publicToken: 'publicToken',
+  readingMode: 'readingMode',
+  unlockDate: 'unlockDate',
+  modeLocked: 'modeLocked',
+  createdAt: 'createdAt'
+} as const
+
+export type CollectionScalarFieldEnum = (typeof CollectionScalarFieldEnum)[keyof typeof CollectionScalarFieldEnum]
+
+
+export const LetterScalarFieldEnum = {
+  id: 'id',
+  collectionId: 'collectionId',
+  senderName: 'senderName',
+  senderEmail: 'senderEmail',
+  content: 'content',
+  theme: 'theme',
+  designConfig: 'designConfig',
+  status: 'status',
+  sentAt: 'sentAt',
+  openedAt: 'openedAt'
+} as const
+
+export type LetterScalarFieldEnum = (typeof LetterScalarFieldEnum)[keyof typeof LetterScalarFieldEnum]
+
+
+export const SortOrder = {
+  asc: 'asc',
+  desc: 'desc'
+} as const
+
+export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const NullableJsonNullValueInput = {
+  DbNull: DbNull,
+  JsonNull: JsonNull
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const UserOrderByRelevanceFieldEnum = {
+  googleId: 'googleId',
+  email: 'email',
+  name: 'name',
+  avatarUrl: 'avatarUrl',
+  passwordHash: 'passwordHash'
+} as const
+
+export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
+
+
+export const CollectionOrderByRelevanceFieldEnum = {
+  title: 'title',
+  publicToken: 'publicToken'
+} as const
+
+export type CollectionOrderByRelevanceFieldEnum = (typeof CollectionOrderByRelevanceFieldEnum)[keyof typeof CollectionOrderByRelevanceFieldEnum]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+export const QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+} as const
+
+export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const LetterOrderByRelevanceFieldEnum = {
+  senderName: 'senderName',
+  senderEmail: 'senderEmail',
+  content: 'content',
+  theme: 'theme'
+} as const
+
+export type LetterOrderByRelevanceFieldEnum = (typeof LetterOrderByRelevanceFieldEnum)[keyof typeof LetterOrderByRelevanceFieldEnum]
 
