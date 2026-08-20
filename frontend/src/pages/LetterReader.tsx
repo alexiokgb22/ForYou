@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Download } from "lucide-react";
+import html2canvas from "html2canvas";
 import { collectionService } from "../services/api";
 import LetterPaper from "../components/LetterPaper";
 import "./LetterReader.css";
@@ -22,6 +23,8 @@ export default function LetterReader() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const paperRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     collectionService
       .openLetter(token!, Number(id))
@@ -30,20 +33,13 @@ export default function LetterReader() {
       .finally(() => setLoading(false));
   }, [token, id]);
 
-  const handleExport = () => {
-    if (!letter) return;
-    const date = letter.designConfig?.date ?? new Date(letter.sentAt).toLocaleDateString("fr-FR");
-    const signature = letter.designConfig?.signature ?? letter.senderName;
-    const blob = new Blob(
-      [`${date}\n\n${letter.content}\n\nAvec affection,\n${signature}`],
-      { type: "text/plain;charset=utf-8" }
-    );
-    const url = URL.createObjectURL(blob);
+  const handleExport = async () => {
+    if (!paperRef.current || !letter) return;
+    const canvas = await html2canvas(paperRef.current, { scale: 2, useCORS: true });
     const a = document.createElement("a");
-    a.href = url;
-    a.download = `lettre-de-${letter.senderName}.txt`;
+    a.href = canvas.toDataURL("image/png");
+    a.download = `lettre-de-${letter.senderName}.png`;
     a.click();
-    URL.revokeObjectURL(url);
   };
 
   if (loading) return <div className="lr-loading"><div className="skeleton skeleton-card" /></div>;
@@ -75,6 +71,7 @@ export default function LetterReader() {
 
       <main className="lr-main">
         <LetterPaper
+          ref={paperRef}
           senderName={letter.senderName}
           date={letter.designConfig?.date ?? new Date(letter.sentAt).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })}
           body={letter.content}

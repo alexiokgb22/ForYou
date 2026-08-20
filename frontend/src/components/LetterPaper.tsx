@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, forwardRef } from "react";
 import "./LetterPaper.css";
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
   onSignatureChange?: (v: string) => void;
 };
 
-export default function LetterPaper({
+const LetterPaper = forwardRef<HTMLDivElement, Props>(function LetterPaper({
   senderName,
   recipientName,
   date = "",
@@ -23,7 +23,7 @@ export default function LetterPaper({
   onDateChange,
   onBodyChange,
   onSignatureChange,
-}: Props) {
+}, paperRef) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export default function LetterPaper({
 
   return (
     <div className="lp">
-      <div className="lp-paper">
+      <div className="lp-paper" ref={paperRef}>
         <div className="lp-lines" aria-hidden />
 
         <div className="lp-date-row">
@@ -88,4 +88,6 @@ export default function LetterPaper({
       </div>
     </div>
   );
-}
+});
+
+export default LetterPaper;
