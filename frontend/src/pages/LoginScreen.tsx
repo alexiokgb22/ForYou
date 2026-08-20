@@ -39,7 +39,11 @@ export default function LoginScreen() {
   return (
     <div className="login-screen">
       <div className="login-card">
-        <h1 className="login-title">Pour Toi 💌</h1>
+        <img
+          src="/logomodif.png"
+          alt="ForYou"
+          className="login-logo"
+        />
         <p className="login-subtitle">
           {mode === "login" ? "Connecte-toi pour accéder à tes lettres" : "Crée ton espace personnel"}
         </p>

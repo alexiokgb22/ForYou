@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { LogOut, Plus, Link, Trash2, Lock, Unlock, Mail, ChevronRight } from "lucide-react";
+import { Plus, Link, Trash2, Lock, Unlock, Mail, ChevronRight, ChevronDown, LogOut } from "lucide-react";
 import { useAuth } from "../hooks/useAuth";
 import { authService, collectionService } from "../services/api";
 import CreateCollectionModal from "../components/CreateCollectionModal";
@@ -25,6 +25,17 @@ export default function Dashboard() {
   const [copiedToken, setCopiedToken] = useState<string | null>(null);
   const [deletingId, setDeletingId] = useState<number | null>(null);
   const [confirmId, setConfirmId] = useState<number | null>(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node))
+        setDropdownOpen(false);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => {
     if (!authLoading && !user) navigate("/login");
@@ -72,22 +83,36 @@ export default function Dashboard() {
   return (
     <div className="dashboard">
       <header className="dashboard-header">
-        <div className="dashboard-user">
-          {user.avatarUrl ? (
-            <img className="dashboard-avatar" src={user.avatarUrl} alt={user.name} />
-          ) : (
-            <div className="dashboard-avatar-placeholder">
-              {user.name.charAt(0).toUpperCase()}
+        <img
+          src="/logomodif.png"
+          alt="ForYou"
+          className="dashboard-logo"
+        />
+        <div className="dashboard-user-menu" ref={dropdownRef}>
+          <button
+            className="dashboard-user-btn"
+            onClick={() => setDropdownOpen((o) => !o)}
+            type="button"
+          >
+            {user.avatarUrl ? (
+              <img className="dashboard-avatar" src={user.avatarUrl} alt={user.name} />
+            ) : (
+              <div className="dashboard-avatar-placeholder">
+                {user.name.charAt(0).toUpperCase()}
+              </div>
+            )}
+            <span className="dashboard-user-name">{user.name}</span>
+            <ChevronDown size={16} color="var(--color-text-muted)" />
+          </button>
+          {dropdownOpen && (
+            <div className="dashboard-dropdown">
+              <button className="dropdown-item" onClick={handleLogout} type="button">
+                <LogOut size={15} />
+                Déconnexion
+              </button>
             </div>
           )}
-          <div>
-            <p className="dashboard-welcome">Bonjour,</p>
-            <p className="dashboard-name">{user.name}</p>
-          </div>
         </div>
-        <button className="btn-logout" onClick={handleLogout} type="button">
-          <LogOut size={18} />
-        </button>
       </header>
 
       <main className="dashboard-main">

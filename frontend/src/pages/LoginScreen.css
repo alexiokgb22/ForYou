@@ -20,12 +20,11 @@
   gap: 16px;
 }
 
-.login-title {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 2rem;
-  color: var(--color-text);
-  text-align: center;
-  margin: 0;
+.login-logo {
+  width: 140px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 .login-subtitle {
