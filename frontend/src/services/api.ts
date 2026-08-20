@@ -20,6 +20,18 @@ export const collectionService = {
   getMine: () => api.get("/collections/mine"),
   getOne: (token: string) => api.get(`/collections/${token}`),
   delete: (id: number) => api.delete(`/collections/${id}`),
+  getLetters: (token: string) => api.get(`/collections/${token}/letters`),
+  openLetter: (token: string, id: number) =>
+    api.patch(`/collections/${token}/letters/${id}/open`),
 };
 
-export default api;
+export const writeService = {
+  getCollection: (token: string) => api.get(`/write/${token}`),
+  submitLetter: (token: string, data: {
+    senderName: string;
+    senderEmail?: string;
+    content: string;
+    theme: string;
+    designConfig?: object;
+  }) => api.post(`/write/${token}/letters`, data),
+};

@@ -231,6 +231,26 @@
   color: var(--color-locked);
 }
 
+.collection-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.collection-unread-dot {
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  flex-shrink: 0;
+}
 .collection-card-actions {
   display: flex;
   gap: 8px;

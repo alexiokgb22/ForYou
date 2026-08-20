@@ -13,6 +13,7 @@ type Collection = {
   publicToken: string;
   readingMode: "IMMEDIATE" | "SCHEDULED";
   unlockDate: string | null;
+  unreadCount: number;
   _count: { letters: number };
 };
 
@@ -146,7 +147,12 @@ export default function Dashboard() {
               >
                 <div className="collection-card-top">
                   <div className="collection-card-info">
-                    <p className="collection-title">{col.title}</p>
+                    <div className="collection-title-row">
+                      <p className="collection-title">{col.title}</p>
+                      {col.unreadCount > 0 && (
+                        <span className="collection-unread-dot">{col.unreadCount}</span>
+                      )}
+                    </div>
                     <div className="collection-meta">
                       <span className="collection-count">
                         {col._count.letters} lettre{col._count.letters !== 1 ? "s" : ""}

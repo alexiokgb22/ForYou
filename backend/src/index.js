@@ -7,6 +7,7 @@ const cors = require("cors");
 
 const authRoutes = require("./routes/auth");
 const collectionRoutes = require("./routes/collections");
+const writeRoutes = require("./routes/write");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(cookieParser());
 
 app.use("/auth", authRoutes);
 app.use("/collections", collectionRoutes);
+app.use("/write", writeRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Serveur lancé sur le port ${PORT}`));

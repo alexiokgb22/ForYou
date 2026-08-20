@@ -33,11 +33,20 @@ const createCollection = async (req, res) => {
 const getMyCollections = async (req, res) => {
   const collections = await prisma.collection.findMany({
     where: { userId: req.userId },
-    include: { _count: { select: { letters: true } } },
+    include: {
+      _count: { select: { letters: true } },
+      letters: { select: { status: true } },
+    },
     orderBy: { createdAt: "desc" },
   });
 
-  res.json(collections);
+  const result = collections.map((col) => ({
+    ...col,
+    unreadCount: col.letters.filter((l) => l.status === "SENT").length,
+    letters: undefined,
+  }));
+
+  res.json(result);
 };
 
 const deleteCollection = async (req, res) => {
