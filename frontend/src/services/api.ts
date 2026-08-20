@@ -14,4 +14,12 @@ export const authService = {
   logout: () => api.post("/auth/logout"),
 };
 
+export const collectionService = {
+  create: (data: { title: string; readingMode: string; unlockDate?: string }) =>
+    api.post("/collections", data),
+  getMine: () => api.get("/collections/mine"),
+  getOne: (token: string) => api.get(`/collections/${token}`),
+  delete: (id: number) => api.delete(`/collections/${id}`),
+};
+
 export default api;
