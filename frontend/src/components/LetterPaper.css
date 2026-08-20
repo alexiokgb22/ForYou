@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap');
+
+.lp {
+  display: flex;
+  justify-content: center;
+  padding: 16px 0;
+}
+
+.lp-paper {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  background-color: #FDFAF5;
+  background-image: linear-gradient(#D6CFC4 1px, transparent 1px);
+  background-size: 100% 36px;
+  background-position: 0 71px; /* 28px padding-top + 36px date-row + 7px margin = 71px */
+  border-radius: 4px;
+  box-shadow:
+    0 2px 8px rgba(46, 42, 37, 0.10),
+    0 0 0 1px rgba(46, 42, 37, 0.06);
+  padding: 28px 36px 36px;
+  box-sizing: border-box;
+  font-family: 'Caveat', cursive;
+}
+
+/* marge gauche rouge façon cahier */
+.lp-lines {
+  position: absolute;
+  top: 0;
+  left: 56px;
+  width: 1px;
+  bottom: 0;
+  background: #E8A89A;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* date-row : hauteur fixe 36px pour que background-position soit identique écriture/lecture */
+.lp-date-row {
+  display: flex;
+  justify-content: flex-end;
+  height: 36px;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+.lp-date {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  color: #6B655C;
+  line-height: 36px;
+}
+
+.lp-date-input {
+  background: none;
+  border: none;
+  border-bottom: 1px dashed #C5BDB3;
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  color: #2E2A25;
+  text-align: right;
+  width: 160px;
+  outline: none;
+  padding: 0 4px;
+  line-height: 36px;
+  height: 36px;
+  box-sizing: border-box;
+}
+
+.lp-date-input::placeholder { color: #B0A89E; }
+
+/* salutation : hauteur fixe 36px = une ligne exacte */
+.lp-salutation {
+  font-family: 'Caveat', cursive;
+  font-size: 1.15rem;
+  color: #2E2A25;
+  margin: 0;
+  padding-left: 4px;
+  line-height: 36px;
+  height: 36px;
+}
+
+/* body lecture : s'étend librement, word-break pour les longs mots */
+.lp-body {
+  font-family: 'Caveat', cursive;
+  font-size: 1.15rem;
+  color: #2E2A25;
+  line-height: 36px;
+  margin: 0 0 24px;
+  white-space: pre-wrap;
+  padding-left: 4px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* body édition : auto-resize via JS, pas de scroll interne */
+.lp-body-input {
+  width: 100%;
+  min-height: 324px;
+  overflow: hidden;
+  background: none;
+  border: none;
+  outline: none;
+  resize: none;
+  font-family: 'Caveat', cursive;
+  font-size: 1.15rem;
+  color: #2E2A25;
+  line-height: 36px;
+  padding: 0 0 0 4px;
+  box-sizing: border-box;
+  caret-color: #C97C5D;
+}
+
+.lp-body-input::placeholder { color: #B0A89E; }
+
+.lp-closing-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  margin-top: 8px;
+}
+
+.lp-closing {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  color: #6B655C;
+  font-style: italic;
+}
+
+.lp-signature {
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2E2A25;
+}
+
+.lp-signature-input {
+  background: none;
+  border: none;
+  border-bottom: 1px dashed #C5BDB3;
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2E2A25;
+  text-align: right;
+  width: 200px;
+  outline: none;
+  padding: 2px 4px;
+  caret-color: #C97C5D;
+}
+
+.lp-signature-input::placeholder { color: #B0A89E; }
+
+@media (min-width: 640px) {
+  /* 40px padding-top + 36px date-row + 7px margin = 83px */
+  .lp-paper { padding: 40px 52px 48px; background-position: 0 83px; }
+}
+
+@media (min-width: 1024px) {
+  .lp { padding: 24px 0; }
+  .lp-paper { max-width: 640px; }
+}

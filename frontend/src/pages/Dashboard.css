@@ -363,10 +363,15 @@
 }
 
 @media (min-width: 640px) {
-  .dashboard-main { padding: 24px; }
+  .dashboard-main { padding: 24px; max-width: 860px; margin: 0 auto; width: 100%; }
 
   .collections-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+@media (min-width: 1024px) {
+  .dashboard-main { max-width: 1000px; }
+  .collections-list { grid-template-columns: repeat(3, 1fr); }
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Copy, Check, Lock, Unlock, Mail } from "lucide-react";
+import { ArrowLeft, Copy, Check, Lock, Unlock } from "lucide-react";
 import { collectionService } from "../services/api";
 import "./CollectionDetail.css";
 
@@ -127,12 +127,16 @@ export default function CollectionDetail() {
                 onClick={() => handleLetterClick(letter)}
               >
                 {letter.status === "SENT" && <span className="cd-envelope-dot" />}
-                <div className="cd-envelope-icon">
-                  {canOpen ? (
-                    <Mail size={28} color="var(--color-primary)" strokeWidth={1.5} />
-                  ) : (
-                    <Lock size={24} color="var(--color-locked)" strokeWidth={1.5} />
-                  )}
+                <div className="cd-envelope-body">
+                  <div className="cd-envelope-flap" />
+                  <div className="cd-envelope-flap-shadow" />
+                  <div className="cd-envelope-bottom-left" />
+                  <div className="cd-envelope-bottom-right" />
+                  <div className="cd-envelope-center">
+                    {!canOpen && <div className="cd-envelope-seal locked-seal"><Lock size={12} color="#9B9186" strokeWidth={2} /></div>}
+                    {canOpen && letter.status === "SENT" && <div className="cd-envelope-seal unread-seal" />}
+                    {canOpen && letter.status === "OPENED" && <div className="cd-envelope-seal opened-seal" />}
+                  </div>
                 </div>
                 <p className="cd-envelope-name">{letter.senderName}</p>
                 <p className="cd-envelope-date">
