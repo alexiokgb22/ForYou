@@ -164,40 +164,20 @@ exports.Prisma.NullableJsonNullValueInput = {
   JsonNull: Prisma.JsonNull
 };
 
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
-};
-
-exports.Prisma.UserOrderByRelevanceFieldEnum = {
-  googleId: 'googleId',
-  email: 'email',
-  name: 'name',
-  avatarUrl: 'avatarUrl',
-  passwordHash: 'passwordHash'
-};
-
-exports.Prisma.CollectionOrderByRelevanceFieldEnum = {
-  title: 'title',
-  publicToken: 'publicToken'
 };
 
 exports.Prisma.JsonNullValueFilter = {
   DbNull: Prisma.DbNull,
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
-};
-
-exports.Prisma.QueryMode = {
-  default: 'default',
-  insensitive: 'insensitive'
-};
-
-exports.Prisma.LetterOrderByRelevanceFieldEnum = {
-  senderName: 'senderName',
-  senderEmail: 'senderEmail',
-  content: 'content',
-  theme: 'theme'
 };
 exports.ReadingMode = exports.$Enums.ReadingMode = {
   UNDECIDED: 'UNDECIDED',

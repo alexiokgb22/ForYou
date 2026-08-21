@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Copy, Check, Lock, Unlock } from "lucide-react";
+import { ArrowLeft, Copy, Check, Lock, Unlock, Mail } from "lucide-react";
 import { collectionService } from "../services/api";
 import "./CollectionDetail.css";
 

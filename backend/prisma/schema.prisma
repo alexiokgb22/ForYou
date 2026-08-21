@@ -4,7 +4,8 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
+ 
 }
 
 model User {
@@ -32,7 +33,7 @@ model Collection {
   user        User        @relation(fields: [userId], references: [id])
   letters     Letter[]
 
-  @@index([userId], map: "collections_user_id_fkey")
+  @@index([userId], map: "collections_user_id_idx")
   @@map("collections")
 }
 
@@ -41,7 +42,7 @@ model Letter {
   collectionId Int          @map("collection_id")
   senderName   String       @map("sender_name")
   senderEmail  String?      @map("sender_email")
-  content      String       @db.Text
+  content      String
   theme        String       @default("default")
   designConfig Json?        @map("design_config")
   status       LetterStatus @default(SENT)
@@ -49,7 +50,7 @@ model Letter {
   openedAt     DateTime?    @map("opened_at")
   collection   Collection   @relation(fields: [collectionId], references: [id])
 
-  @@index([collectionId], map: "letters_collection_id_fkey")
+  @@index([collectionId], map: "letters_collection_id_idx")
   @@map("letters")
 }
 
