@@ -1,4 +1,5 @@
-import { useState, FormEvent } from "react";
+import { useState } from "react";
+import type { FormEvent } from "react";
 import { Unlock, Lock } from "lucide-react";
 import { collectionService } from "../services/api";
 import "./CreateCollectionModal.css";
