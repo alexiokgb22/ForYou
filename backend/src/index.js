@@ -19,5 +19,10 @@ app.use("/auth", authRoutes);
 app.use("/collections", collectionRoutes);
 app.use("/write", writeRoutes);
 
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Serveur lancé sur le port ${PORT}`));
